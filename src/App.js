@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { useState } from "react";
+import { ResetBtn } from "./ResetBtn";
+import { AddTaskBtn } from "./AddTaskBtn";
+import { ToDoList } from "./ToDoList";
+export default function App() {
+  const [newTask, setNewTask] = useState([]);
+  function handleAddTask() {
+    setNewTask([...newTask, newTask.length + 1]);
+  }
+  function handleDeleteTask(taskId) {
+    setNewTask(newTask.filter((id) => id !== taskId));
+  }
+  function handleReset() {
+    setNewTask([]);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>ToDo List</h1>
+      {newTask.map((newTaskId) => (
+        <ToDoList key={newTaskId} id={newTaskId} onDelete={handleDeleteTask} />
+      ))}
+      <AddTaskBtn onClick={handleAddTask}>➕ Add task</AddTaskBtn>
+      <ResetBtn onReset={handleReset}>Reset</ResetBtn>
     </div>
   );
 }
-
-export default App;
