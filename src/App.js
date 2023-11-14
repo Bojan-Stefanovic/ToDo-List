@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ResetBtn } from "../components/ResetBtn";
-import { AddTaskBtn } from "../components/AddTaskBtn";
-import { ToDoList } from "../components/ToDoList";
+import { ResetBtn } from "./components/ResetBtn";
+import { AddTaskBtn } from "./components/AddTaskBtn";
+import { ToDoList } from "./components/ToDoList";
 export default function App() {
   const [newTask, setNewTask] = useState([]);
   function handleAddTask() {
